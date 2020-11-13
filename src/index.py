@@ -25,7 +25,6 @@ class MainApp(QMainWindow,Ui_MainWindow):
         self.setupUi(self)
         self.Handel_Window()
         self.Handel_Buttons()
-        self.Handel_CheckBoxes()
 
     def Handel_Window(self):
         self.setFixedSize(689, 297)
@@ -35,12 +34,6 @@ class MainApp(QMainWindow,Ui_MainWindow):
     def Handel_Buttons(self):
         self.pushButton.clicked.connect(self.password_Generating)
         self.pushButton_2.clicked.connect(self.copy_Method)
-
-    def Handel_CheckBoxes(self):
-        self.checkBox.stateChanged.connect(self.numbers_Generating)
-        self.checkBox_2.stateChanged.connect(self.letters_Generating)
-        self.checkBox_3.stateChanged.connect(self.symboles_Generating)
-        self.checkBox_4.stateChanged.connect(self.arSymboles_Generating)
 
     def symboles_Generating(self):
         symboles_Length = 32 * 20 / 100
@@ -79,9 +72,19 @@ class MainApp(QMainWindow,Ui_MainWindow):
             password.append(letters[random.randrange(0,len(letters)-1)])
 
     def password_Generating(self):
+        if self.checkBox.isChecked() == True:
+            self.numbers_Generating()
+        if self.checkBox_2.isChecked() == True:
+            self.letters_Generating()
+        if self.checkBox_3.isChecked() == True:
+            self.symboles_Generating()
+        if self.checkBox_4.isChecked() == True:
+            self.arSymboles_Generating()
+
         password_Var = random.choices(password,k=32)
         password_Var2 = ''.join(password_Var)
         self.lineEdit.setText(password_Var2)
+        password.clear()
 
     def copy_Method(self):
         pyperclip.copy(self.lineEdit.text())
