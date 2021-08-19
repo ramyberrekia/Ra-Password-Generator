@@ -1,2 +1,2 @@
 # Ra-Password-Generator
-Small application that generates passwords that contains symbols, numbers, letters and many other things by exploring the app.
+An app that generates a complicated passwords. You can choose what characters your want to be in your password.
